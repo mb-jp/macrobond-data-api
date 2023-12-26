@@ -2,7 +2,7 @@ import os
 import subprocess
 import setuptools
 
-from mypyc.build import mypycify
+from mypyc.build import mypycify  # type: ignore
 
 version_info_path = os.path.join("macrobond_data_api", "__version__.py")
 
