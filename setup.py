@@ -2,6 +2,8 @@ import os
 import subprocess
 import setuptools
 
+from mypyc.build import mypycify
+
 version_info_path = os.path.join("macrobond_data_api", "__version__.py")
 
 AUTHOR = "Macrobond Financial"
@@ -58,6 +60,7 @@ with open(version_info_path, "w+", encoding="utf-8") as fh:
 setuptools.setup(
     name="macrobond-data-api",
     packages=setuptools.find_packages(include=["macrobond_data_api", "macrobond_data_api.*"]),
+    ext_modules=mypycify(["macrobond_data_api/__init__.py"]),
     version=version,
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
@@ -85,7 +88,7 @@ setuptools.setup(
     extras_require={
         "extra": ["matplotlib", "statsmodels", "scikit-learn", "pandas"],
         "dev": [
-            "mypy==1.6.0",
+            "mypy[mypyc]==1.7.1",
             "pylint==3.0.1",
             "pycodestyle==2.11.1",
             "pdoc3==0.10.0",

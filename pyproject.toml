@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools","mypy[mypyc]","types-requests","types-pywin32","ipython>=7.34.0", "keyring"]
 build-backend = "setuptools.build_meta"
 
 [tool.mypy]
