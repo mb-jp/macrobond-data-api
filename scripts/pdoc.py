@@ -4,9 +4,9 @@ import sys
 from context import WorkItem, run
 
 
-class Pdoc3(WorkItem):
+class Pdoc(WorkItem):
     async def run(self) -> None:
-        await self.python_run("pdoc", " --html --template-dir docs --force -o docs/build macrobond_data_api")
+        await self.python_run("pdoc", "./macrobond_data_api/ -o ./docs/build/")
 
         if os.path.isdir("docs/build/macrobond_data_api/assets"):
             shutil.rmtree("docs/build/macrobond_data_api/assets")
@@ -17,7 +17,7 @@ class Pdoc3(WorkItem):
         self.print("file:///" + file_url)
 
 
-class Pdoc3Server(WorkItem):
+class PdocServer(WorkItem):
     async def run(self) -> None:
         await self.python_run("pdoc", " --http : --html --template-dir docs --force -o docs/build macrobond_data_api")
 
@@ -26,10 +26,10 @@ def main() -> None:
     command = sys.argv[1] if len(sys.argv) <= 2 else None
 
     if command == "--no_server":
-        run(Pdoc3)
+        run(Pdoc)
 
     if command == "--server":
-        run(Pdoc3Server)
+        run(PdocServer)
 
     if command:
         print("bad args " + command)

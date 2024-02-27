@@ -52,10 +52,10 @@
             "detail": "Run lint tools, black_check mypy pylint pycodestyle pdoc3"
         },
         {
-            "label": "Pdoc3",
+            "label": "Pdoc",
             "args": [
-                "scripts/pdoc3.py",
-                "--${input:pdoc3_server}"
+                "scripts/pdoc.py",
+                "--${input:pdoc_server}"
             ],
             "presentation": {
                 "clear": true
@@ -140,13 +140,13 @@
             "default": "all"
         },
         {
-            "id": "pdoc3_server",
+            "id": "pdoc_server",
             "type": "pickString",
             "options": [
                 "server",
                 "no_server",
             ],
-            "description": "Run pdoc3 with server ?",
+            "description": "Run pdoc with server ?",
             "default": "server"
         },
         {

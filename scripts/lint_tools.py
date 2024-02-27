@@ -3,13 +3,16 @@ from context import run, WorkItem
 from code_generation import Verify
 from jupyter import JupyterVerify
 
-from pdoc3 import Pdoc3
+from pdoc import Pdoc
 
 
 class Mypy(WorkItem):
     # TODO: @mb-jp use --strict for mypy
     async def run(self) -> None:
-        await self.python_run("mypy", ". --show-error-codes --exclude .env --exclude test.py --python-version 3.8")
+        await self.python_run(
+            "mypy",
+            ". --show-error-codes --strict --exclude .env --exclude test.py --exclude build --python-version 3.8",
+        )
 
 
 class Pylint(WorkItem):
@@ -36,7 +39,7 @@ def main() -> None:
     command = sys.argv[1] if len(sys.argv) <= 2 else None
 
     if command == "--all":
-        run(Verify, BlackCheck, Mypy, Pylint, PyCodeStyle, Pdoc3, JupyterVerify, in_sequence=False)
+        run(Verify, BlackCheck, Mypy, Pylint, PyCodeStyle, Pdoc, JupyterVerify, in_sequence=False)
 
     if command == "--verify":
         run(Verify)
@@ -53,8 +56,8 @@ def main() -> None:
     if command == "--py_code_style":
         run(PyCodeStyle)
 
-    if command == "--pdoc3":
-        run(Pdoc3)
+    if command == "--pdoc":
+        run(Pdoc)
 
     if command == "--jupyter-verify":
         run(JupyterVerify)

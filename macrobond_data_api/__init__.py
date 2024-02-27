@@ -6,6 +6,11 @@
 Exposes a common API in Python for the Macrobond Web and Client Data APIs
 """
 
+import macrobond_data_api.com as com
+import macrobond_data_api.common as common
+import macrobond_data_api.web as web
+import macrobond_data_api.util as util
+
 from ._generated import (
     delete_serie,
     entity_search,
@@ -52,4 +57,8 @@ __all__ = [
     "metadata_get_value_information",
     "metadata_list_values",
     "upload_series",
+    "com",
+    "common",
+    "web",
+    "util",
 ]
