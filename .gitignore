@@ -2,6 +2,7 @@
 .mypy_cache/
 **.dtmp
 __pycache__/
+docs/.doc_git/
 
 /dist/
 /macrobond_data_api.egg-info/
