@@ -11,11 +11,11 @@ class TestSetup(WorkItem):
 
 
 def main() -> None:
-    path = os.path.join(os.getcwd(), "setup.py")
+    path = os.path.join(os.getcwd(), "setup.cfg")
     with open(path, "r", encoding="utf8") as f:
         content = f.read()
 
-    match: List[str] = re.findall('"requests(?:\\>\\=|\\[socks]\\>\\=)[0-9]+\\.[0-9]+\\.[0-9]+"', content)
+    match: List[str] = re.findall("requests(?:\\>\\=|\\[socks]\\>\\=)[0-9]+\\.[0-9]+\\.[0-9]", content)
     print("match:\n", "\n".join(match), sep="")
     if len(match) != 3:
         print("len(match) != 3")
